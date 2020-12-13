@@ -17,6 +17,7 @@ create table Type(
 -- Rooms
 create table Rooms(
 	RoomId int primary key auto_increment,
+    RoomNumber int not null,
     TypeId int not null,
     AdaAccessibility boolean not null,
     foreign key fk_CastMembers_TypeId (TypeId)
@@ -60,7 +61,9 @@ create table Reservation(
     Adults int not null,
     Children int not null,
     StartDate date not null,
-    EndDate date not null
+    EndDate date not null,
+    foreign key fk_Reservation_GuestId (GuestId)
+		references Guests(GuestId)
 );
 
 -- RoomReservation
