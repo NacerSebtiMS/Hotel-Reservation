@@ -10,8 +10,8 @@ create table Type(
     Name varchar(10) not null,
     StandardOccupancy int not null,
     MaximumOccupancy int not null,
-    BasePrice decimal not null,
-    ExtraPerson decimal not null
+    BasePrice decimal(6,2) not null,
+    ExtraPerson decimal(6,2) not null
 );
 
 -- Rooms
@@ -58,8 +58,6 @@ create table Guests(
 create table Reservation(
 	ReservationId int primary key auto_increment,
 	GuestId int not null,
-    Adults int not null,
-    Children int not null,
     StartDate date not null,
     EndDate date not null,
     foreign key fk_Reservation_GuestId (GuestId)
@@ -70,7 +68,9 @@ create table Reservation(
 create table RoomReservation(
 	RoomId int not null,
     ReservationId int not null,
-    TotalCost decimal not null,
+    Adults int not null,
+    Children int not null,
+    TotalCost decimal(6,2) not null,
     PRIMARY KEY pk_RoomReservation (RoomId, ReservationId),
     foreign key fk_RoomReservation_RoomId (RoomId)
 		references Rooms(RoomId),
