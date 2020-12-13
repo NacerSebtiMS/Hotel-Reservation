@@ -166,3 +166,16 @@ insert into RoomReservation (RoomId, ReservationId, Adults, Children, TotalCost)
 	(6, 22, 2, 0, 449.97),
 	(9, 22, 2, 2, 599.97),
 	(10, 23, 2, 0, 699.96);
+    
+/* 
+	DELETE QUERIES
+*/
+
+delete from RoomReservation
+where ReservationId = 8;
+
+delete from Reservation
+where GuestId = 8;
+
+delete from Guests
+where GuestId = 8;
