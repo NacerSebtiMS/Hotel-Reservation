@@ -2,7 +2,8 @@ use HotelTSG;
 
 /*
 1
-Write a query that returns a list of reservations that end in July 2023, including the name of the guest, the room number(s), and the reservation dates.
+Write a query that returns a list of reservations that end in July 2023, including the name of the guest,
+ the room number(s), and the reservation dates.
 */
 select guests.FirstName, guests.LastName, rooms.RoomNumber, reservation.StartDate, reservation.EndDate
 from guests
@@ -20,7 +21,8 @@ Bettyann	Seery	303	2023-07-28	2023-07-29
 
 /*
 2
-Write a query that returns a list of all reservations for rooms with a jacuzzi, displaying the guest's name, the room number, and the dates of the reservation.
+Write a query that returns a list of all reservations for rooms with a jacuzzi, 
+displaying the guest's name, the room number, and the dates of the reservation.
 */
 select guests.FirstName, guests.LastName, rooms.RoomNumber, reservation.StartDate, reservation.EndDate
 from guests
@@ -46,7 +48,9 @@ Nacer	Sebti	307	2023-03-17	2023-03-20
 
 /*
 3
-Write a query that returns all the rooms reserved for a specific guest, including the guest's name, the room(s) reserved, the starting date of the reservation, and how many people were included in the reservation. (Choose a guest's name from the existing data.)
+Write a query that returns all the rooms reserved for a specific guest,
+ including the guest's name, the room(s) reserved, the starting date of the reservation, 
+ and how many people were included in the reservation. (Choose a guest's name from the existing data.)
 */
 select guests.FirstName, guests.LastName, rooms.RoomNumber, reservation.StartDate, reservation.EndDate, roomreservation.Adults, roomreservation.Children
 from guests
@@ -62,7 +66,8 @@ Nacer	Sebti	205	2023-06-28	2023-07-02	2	0
 
 /*
 4
-Write a query that returns a list of rooms, reservation ID, and per-room cost for each reservation. The results should include all rooms, whether or not there is a reservation associated with the room.
+Write a query that returns a list of rooms, reservation ID, and per-room cost for each reservation. 
+The results should include all rooms, whether or not there is a reservation associated with the room.
 */
 select rooms.RoomNumber, roomreservation.ReservationId, roomreservation.TotalCost
 from rooms
@@ -102,10 +107,11 @@ left join roomreservation on rooms.RoomId = roomreservation.RoomId;
 Write a query that returns all the rooms accommodating at least three guests and that are reserved on any date in April 2023.
 */
 select rooms.RoomNumber
-from rooms
+from type
+inner join rooms on rooms.TypeId = type.TypeId
 inner join roomreservation on rooms.RoomId = roomreservation.RoomId
 inner join reservation on reservation.ReservationId = roomreservation.ReservationId
-where (roomreservation.Adults + roomreservation.Children) >= 3
+where Type.MaximumOccupancy >= 3
 and ( (reservation.StartDate between "2023-04-01" and "2023-04-30") or (reservation.EndDate between "2023-04-01" and "2023-04-30") or (reservation.StartDate <= "2023-04-01" and  reservation.StartDate >= "2023-04-30") );
 /*
 # RoomNumber
@@ -113,7 +119,8 @@ and ( (reservation.StartDate between "2023-04-01" and "2023-04-30") or (reservat
 
 /*
 6
-Write a query that returns a list of all guest names and the number of reservations per guest, sorted starting with the guest with the most reservations and then by the guest's last name.
+Write a query that returns a list of all guest names and the number of reservations per guest, 
+sorted starting with the guest with the most reservations and then by the guest's last name.
 */
 select guests.FirstName, guests.LastName, count(reservation.ReservationId) as NumberOfReservations
 from guests
