@@ -1,6 +1,6 @@
 # Hotel-Reservation
 
-The Hotel Reservation project aims to build a database that satifies the second normal form (2NF).
+The Hotel Reservation project aims to build a database that satisfies the second normal form (2NF).
 
 The documents provided at the beginning of the project are Excel spreadsheets which contains the information of the hotel management.
 
